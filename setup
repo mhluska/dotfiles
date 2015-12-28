@@ -1,9 +1,13 @@
 #!/bin/bash
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VUNDLE_PATH="${DIR}/.vim/bundle/Vundle.vim"
 
 cd "${HOME}"
 
-test -d .vim/ && rm -rfi .vim/
+test -d .vim -a ! -L .vim && rm -rfi .vim
 ln -fs "${DIR}/.vim"
 ln -fs "${DIR}/.vimrc"
+
+git clone https://github.com/VundleVim/Vundle.vim.git "${VUNDLE_PATH}"
+vim +PluginInstall +qall
