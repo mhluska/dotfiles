@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'othree/yajs.vim'
 
 " Required for Vundle (package manager).
 call vundle#end()            " required
@@ -30,5 +31,8 @@ autocmd BufNewFile,BufRead * setlocal formatoptions+=t
 " Convert tabs to 4 spaces.
 set expandtab tabstop=4 shiftwidth=4
 
-" Map the main command for the `ctrlp.vim` plugin. 
+" Map the main command for the `ctrlp.vim` plugin to Ctrl-P.
 let g:ctrlp_map = '<c-p>'
+
+" Avoid searching library files.
+let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|git'
