@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'othree/yajs.vim'
+Plugin 'tpope/vim-sleuth'
+Plugin 'Raimondi/delimitMate'
 
 " Required for Vundle (package manager).
 call vundle#end()            " required
@@ -36,3 +38,15 @@ let g:ctrlp_map = '<c-p>'
 
 " Avoid searching library files.
 let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|git'
+
+" Make cycling buffers with keys easier.
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>
+
+" Automatically center the search term.
+nmap n nzz  
+nmap p pzz
+
+" Enable mouse scrolling.
+set mouse=a
