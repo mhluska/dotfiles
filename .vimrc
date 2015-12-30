@@ -47,10 +47,13 @@ map gd :bd<cr>
 
 " Automatically center the search term.
 nmap n nzz
-nmap p pzz
 
 " Enable mouse scrolling.
 set mouse=a
 
 " Strip whitespace on save.
 autocmd BufWritePre * StripWhitespace
+
+" Add incremental searching (press Enter to remove highlight).
+set hlsearch incsearch
+nnoremap <CR> :noh<CR><CR>
