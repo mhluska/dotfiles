@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ln -fs "${DIR}/com.googlecode.iterm2.plist" \
+       "${HOME}/Library/Preferences/com.googlecode.iterm2.plist"
+
+# Remove cached settings in iTerm2.
+killall cfprefsd
+
+# Make font appear less smooth in Vim.
+defaults write -g AppleFontSmoothing -int 1
