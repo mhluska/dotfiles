@@ -7,10 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'othree/yajs.vim'
-Plugin 'tpope/vim-sleuth'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'godlygeek/tabular'
@@ -42,12 +43,6 @@ let g:ctrlp_map = '<c-p>'
 " Avoid searching library files.
 let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|git\|
   \__pycache__'
-
-" Open tabs by default.
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': ['<c-t>'],
-  \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
-  \ }
 
 map <c-\> :Tabularize /=<CR>
 
