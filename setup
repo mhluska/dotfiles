@@ -9,6 +9,10 @@ cd "${HOME}"
 test -d .vim -a ! -L .vim && rm -rfi .vim
 ln -fs "${DIR}/.vim"
 ln -fs "${DIR}/.vimrc"
+ln -fs "${DIR}/.gitignore_global"
+
+# Setup global Git ignore config.
+git config --global core.excludesfile "${HOME}/.gitignore_global"
 
 test ! -e ${VUNDLE_PATH} && git clone "${VUNDLE_REPO}" "${VUNDLE_PATH}"
 vim +PluginInstall +qall

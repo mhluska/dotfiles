@@ -1,7 +1,8 @@
 # dotfiles
+
 Configuration files for Vim and whatnot
 
-Note: This will nuke your existing `.vim` and `.vimrc` files.
+Note: This will nuke your existing dotfiles.
 
 ```
 ./setup
