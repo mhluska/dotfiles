@@ -14,6 +14,7 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'godlygeek/tabular'
+Plugin 'bling/vim-airline'
 
 " Required for Vundle (package manager).
 call vundle#end()            " required
@@ -70,3 +71,12 @@ nnoremap <CR> :noh<CR><CR>
 
 " Make split screens appear right and below.
 set splitright splitbelow
+
+" Enable the status line plugin even when a split is not created.
+set laststatus=2
+
+" Show open buffers.
+let g:airline#extensions#tabline#enabled = 1
+
+" Enable status line glyphs.
+let g:airline_powerline_fonts = 1

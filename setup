@@ -1,7 +1,8 @@
 #!/bin/bash
 
 export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export VUNDLE_REPO='https://github.com/VundleVim/Vundle.vim.git'
+export STATUS_REPO='git@github.com:powerline/fonts.git'
+export VUNDLE_REPO='git@github.com:VundleVim/Vundle.vim.git'
 export VUNDLE_PATH="${DIR}/.vim/bundle/Vundle.vim"
 
 cd "${HOME}"
@@ -14,8 +15,16 @@ ln -fs "${DIR}/.gitignore_global"
 # Setup global Git ignore config.
 git config --global core.excludesfile "${HOME}/.gitignore_global"
 
+# Setup Vundle package manager.
 test ! -e ${VUNDLE_PATH} && git clone "${VUNDLE_REPO}" "${VUNDLE_PATH}"
 vim +PluginInstall +qall
+
+# Setup status line fonts for Vim.
+fonts=$(basename $STATUS_REPO)
+fonts=${fonts%.*}
+test ! -e "${fonts}" && git clone "${STATUS_REPO}"
+"${fonts}/install.sh"
+rm -rf "${fonts}"
 
 if [ "$(uname)" == 'Darwin' ]; then
     "${DIR}/setup-mac"
