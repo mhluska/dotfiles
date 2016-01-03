@@ -13,6 +13,7 @@ Plugin 'othree/yajs.vim'
 Plugin 'tpope/vim-sleuth'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'godlygeek/tabular'
 
 " Required for Vundle (package manager).
 call vundle#end()            " required
@@ -38,13 +39,16 @@ set expandtab tabstop=4 shiftwidth=4
 let g:ctrlp_map = '<c-p>'
 
 " Avoid searching library files.
-let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|git\|
+  \__pycache__'
 
 " Open tabs by default.
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-t>'],
   \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
   \ }
+
+map <c-\> :Tabularize /=<CR>
 
 " Make cycling buffers with keys easier.
 map gn :bn<cr>
