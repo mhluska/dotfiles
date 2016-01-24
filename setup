@@ -1,9 +1,25 @@
 #!/bin/bash
 
 export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export STATUS_REPO='git@github.com:powerline/fonts.git'
-export VUNDLE_REPO='git@github.com:VundleVim/Vundle.vim.git'
+export STATUS_REPO='https://github.com/powerline/fonts.git'
+export VUNDLE_REPO='https://github.com/VundleVim/Vundle.vim.git'
 export VUNDLE_PATH="${DIR}/.vim/bundle/Vundle.vim"
+
+function run() {
+    name=${1}
+    echo "--> \`${name}\`"
+    eval "${name}"
+}
+
+function input() {
+    name=${1}
+    question="${2}"
+    if [ -z "$(eval ${name})" ]; then
+        echo "${question}"
+        read -r value
+        run "${name} \"${value}\""
+    fi
+}
 
 cd "${HOME}"
 
@@ -11,9 +27,24 @@ test -d .vim -a ! -L .vim && rm -rfi .vim
 ln -fs "${DIR}/.vim"
 ln -fs "${DIR}/.vimrc"
 ln -fs "${DIR}/.gitignore_global"
+ln -fs "${DIR}/.aliases"
+ln -fs "${DIR}/.zshrc"
+ln -fs "${DIR}/.bashrc"
+ln -fs "${DIR}/.bash_login"
 
 # Setup global Git ignore config.
 git config --global core.excludesfile "${HOME}/.gitignore_global"
+git config --global core.editor vim
+git config --global push.default simple
+
+input "git config --global user.name"  "Git: Enter first and last name:"
+input "git config --global user.email" "Git: Enter email:"
+
+if [ ! $(git config --global user.email) ]; then
+    echo "\`git config --global user.email\`"
+    read email
+    git config --global user.email ${email}
+fi
 
 # Setup Vundle package manager.
 test ! -e ${VUNDLE_PATH} && git clone "${VUNDLE_REPO}" "${VUNDLE_PATH}"
@@ -28,3 +59,5 @@ test ! -e "${fonts}" && git clone "${STATUS_REPO}" "${fonts}" \
 if [ "$(uname)" == 'Darwin' ]; then
     "${DIR}/setup-mac"
 fi
+
+run "chsh -s $(which zsh)"
