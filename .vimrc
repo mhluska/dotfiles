@@ -16,6 +16,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
+Plugin 'tomtom/tcomment_vim'
 
 " Required for Vundle (package manager).
 call vundle#end()            " required
@@ -42,7 +43,7 @@ let g:ctrlp_map = '<c-p>'
 
 " Avoid searching library files.
 let g:ctrlp_custom_ignore = 'bower_components\|node_modules\|DS_Store\|git\|
-  \__pycache__'
+  \__pycache__\|build'
 
 map <c-\> :Tabularize /=<CR>
 
@@ -54,8 +55,15 @@ map gd :bd<cr>
 " Automatically center the search term.
 nmap n nzz
 
+" Add shortcut for opening this file.
+nmap <leader>ev :vsplit $MYVIMRC<cr>
+
 " Enable mouse scrolling.
 set mouse=a
+
+" Make mouse scrolling smoother.
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
 
 " Strip whitespace on save.
 autocmd BufWritePre * StripWhitespace
@@ -70,8 +78,24 @@ set splitright splitbelow
 " Enable the status line plugin even when a split is not created.
 set laststatus=2
 
+" Make backspace work when removing indentation. See:
+" http://vi.stackexchange.com/a/2163
+set backspace=indent,eol,start
+
 " Show open buffers.
 let g:airline#extensions#tabline#enabled = 1
 
 " Enable status line glyphs.
 let g:airline_powerline_fonts = 1
+
+" Auto-reload this file when it changes.
+augroup myvimrc
+	autocmd!
+	autocmd BufWritePost .vimrc,_vimrc,vimrc windo source $MYVIMRC
+augroup END
+
+" Auto-reload the `ctrlp.vim` cache on focus or file write.
+augroup CtrlPExtension
+    autocmd!
+    autocmd BufWritePost * CtrlPClearCache
+augroup END
