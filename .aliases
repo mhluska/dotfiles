@@ -10,7 +10,34 @@ function gsq {
     git reset --soft ${1}~1 && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"
 }
 
+function jsonfix {
+    filename="${1}"
+    python -m json.tool "${filename}" > "${filename}.tmp"
+    mv "${filename}.tmp" "${filename}"
+}
+
+function grc {
+    git reset HEAD "${1}" && git checkout "${1}"
+}
+
+function gch {
+    if [ ${#} -eq 1 ]; then
+        git checkout $(git branch | grep -m 1 -i "${1}")
+    else
+        git checkout ${@}
+    fi
+}
+
+alias urldecode='python -c "import sys, urllib as ul; \
+    print ul.unquote_plus(sys.argv[1])"'
+
+alias urlencode='python -c "import sys, urllib as ul; \
+    print ul.quote_plus(sys.argv[1])"'
+
 alias ll='ls -l'
+alias ack='ack --ignore-dir tmp --ignore-dir dist --ignore-dir public \
+               --ignore-dir vendor --ignore-dir bower_components \
+               --ignore-dir node_modules --ignore-dir log'
 
 alias g='git'
 alias gu='git update'
@@ -22,8 +49,8 @@ alias gc='git commit -m'
 alias gl='git log'
 alias gd='git diff HEAD'
 alias gp='git pull'
+alias gcl='git clean -f -d'
 alias gca='git commit --amend'
-alias gch='git checkout'
 alias gpp='git pull && git push'
 alias gbc="git branch | grep '*' | cut -d' ' -f 2-"
 alias gra='git rm $(git ls-files -d)'
