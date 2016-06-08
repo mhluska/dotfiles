@@ -51,3 +51,5 @@ eval "$(pyenv init -)"
 if [ -f "${HOME}/.aliases" ]; then
     source "${HOME}/.aliases"
 fi
+
+export PATH="${PATH}:${HOME}/bin"
