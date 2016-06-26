@@ -40,12 +40,6 @@ git config --global push.default simple
 input "git config --global user.name"  "Git: Enter first and last name:"
 input "git config --global user.email" "Git: Enter email:"
 
-if [ ! $(git config --global user.email) ]; then
-    echo "\`git config --global user.email\`"
-    read email
-    git config --global user.email ${email}
-fi
-
 # Setup Vundle package manager.
 test ! -e ${VUNDLE_PATH} && git clone "${VUNDLE_REPO}" "${VUNDLE_PATH}"
 vim +PluginInstall +qall
