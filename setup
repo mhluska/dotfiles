@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export STATUS_REPO='https://github.com/powerline/fonts.git'
@@ -21,9 +21,19 @@ function input() {
     fi
 }
 
+function delete_if_not_symlink_dir() {
+    test -d "${1}" -a ! -L "${1}" && rm -rfi "${1}"
+}
+
+# TODO(maros): Convert everything in this setup script to Babuska deps.
+curl https://babushka.me/up
+babushka dotfiles
+
 cd "${HOME}"
 
-test -d .vim -a ! -L .vim && rm -rfi .vim
+delete_if_not_symlink_dir .vim
+delete_if_not_symlink_dir .babushka
+
 ln -fs "${DIR}/.vim"
 ln -fs "${DIR}/.vimrc"
 ln -fs "${DIR}/.gitignore_global"
@@ -31,6 +41,7 @@ ln -fs "${DIR}/.aliases"
 ln -fs "${DIR}/.zshrc"
 ln -fs "${DIR}/.bashrc"
 ln -fs "${DIR}/.bash_login"
+ln -fs "${DIR}/.babushka"
 
 # Setup global Git ignore config.
 git config --global core.excludesfile "${HOME}/.gitignore_global"
