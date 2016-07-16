@@ -17,6 +17,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'edkolev/tmuxline.vim'
 
 " Required for Vundle (package manager).
 call vundle#end()            " required

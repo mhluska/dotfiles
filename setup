@@ -42,6 +42,7 @@ ln -fs "${DIR}/.zshrc"
 ln -fs "${DIR}/.bashrc"
 ln -fs "${DIR}/.bash_login"
 ln -fs "${DIR}/.babushka"
+ln -fs "${DIR}/.tmux.conf"
 
 # Setup global Git ignore config.
 git config --global core.excludesfile "${HOME}/.gitignore_global"
