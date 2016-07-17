@@ -15,7 +15,8 @@ Plugin 'othree/yajs.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'godlygeek/tabular'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'edkolev/tmuxline.vim'
 
@@ -27,7 +28,8 @@ filetype plugin indent on    " required
 syntax enable
 
 " Set a color scheme. Do it silently to avoid errors during setup.
-silent! colorscheme molokai
+set background=dark
+silent! colorscheme solarized
 
 " Enable line numbers.
 set number
