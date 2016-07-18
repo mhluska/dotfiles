@@ -1,6 +1,6 @@
 HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=2000
+HISTSIZE=$((2**32 - 1))
+SAVEHIST=${HISTSIZE}
 
 # Enable UTF-8 (helps with vim-airline patched font).
 export LANG="en_US.UTF-8"
@@ -27,6 +27,9 @@ setopt extendedglob
 
 # Don't put duplicate lines or lines starting with space in the history.
 setopt histignoredups histignorespace
+
+# Share history between windows.
+setopt share_history
 
 # Can type comments in the terminal.
 setopt interactivecomments
