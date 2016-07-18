@@ -2,6 +2,16 @@ HISTFILE=~/.histfile
 HISTSIZE=2000
 SAVEHIST=2000
 
+# Enable UTF-8 (helps with vim-airline patched font).
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
 # Use Vim bindings for line editing.
 bindkey -v
 bindkey "^R" history-incremental-search-backward
