@@ -35,6 +35,8 @@ alias urlencode='python -c "import sys, urllib as ul; \
     print ul.quote_plus(sys.argv[1])"'
 
 alias ll='ls -l'
+alias chmod-value='stat -f "%OLp"'
+alias newest='ls -t | head -1'
 alias ack='ack --ignore-dir tmp --ignore-dir dist --ignore-dir public \
                --ignore-dir vendor --ignore-dir bower_components \
                --ignore-dir node_modules --ignore-dir log'
@@ -49,6 +51,7 @@ alias gc='git commit -m'
 alias gl='git log'
 alias gd='git diff HEAD'
 alias gp='git pull'
+alias glo='git log --pretty=oneline --abbrev-commit'
 alias gcl='git clean -f -d'
 alias gca='git commit --amend'
 alias gpp='git pull && git push'

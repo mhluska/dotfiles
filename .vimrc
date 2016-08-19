@@ -29,7 +29,7 @@ syntax enable
 
 " Set a color scheme. Do it silently to avoid errors during setup.
 set background=dark
-silent! colorscheme solarized
+silent! colorscheme molokai
 
 " Enable line numbers.
 set number
@@ -38,8 +38,8 @@ set number
 set textwidth=79 colorcolumn=80,120
 autocmd BufNewFile,BufRead * setlocal formatoptions+=t
 
-" Convert tabs to 4 spaces.
-set expandtab tabstop=4 shiftwidth=4
+" Convert tabs to 2 spaces.
+set expandtab tabstop=2 shiftwidth=2
 
 " Map the main command for the `ctrlp.vim` plugin to Ctrl-P.
 let g:ctrlp_map = '<c-p>'
@@ -93,8 +93,8 @@ let g:airline_powerline_fonts = 1
 
 " Auto-reload this file when it changes.
 augroup myvimrc
-	autocmd!
-	autocmd BufWritePost .vimrc,_vimrc,vimrc windo source $MYVIMRC
+    autocmd!
+    autocmd BufWritePost .vimrc,_vimrc,vimrc windo source $MYVIMRC
 augroup END
 
 " Auto-reload the `ctrlp.vim` cache on focus or file write.
