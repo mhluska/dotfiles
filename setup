@@ -5,6 +5,8 @@ export STATUS_REPO='https://github.com/powerline/fonts.git'
 export VUNDLE_REPO='https://github.com/VundleVim/Vundle.vim.git'
 export VUNDLE_PATH="${DIR}/.vim/bundle/Vundle.vim"
 
+PROJECTS_DIR="${HOME}/Dropbox/.projects"
+
 function run() {
     name=${1}
     echo "--> \`${name}\`"
@@ -26,7 +28,7 @@ function delete_if_not_symlink_dir() {
 }
 
 # TODO(maros): Convert everything in this setup script to Babuska deps.
-curl https://babushka.me/up
+sh -c "`curl --silent https://babushka.me/up/v0.19.0`" </dev/null
 babushka dotfiles
 
 cd "${HOME}"
@@ -43,6 +45,14 @@ ln -fs "${DIR}/.bashrc"
 ln -fs "${DIR}/.bash_login"
 ln -fs "${DIR}/.babushka"
 ln -fs "${DIR}/.tmux.conf"
+
+# Install projects.
+if [ -d "${PROJECTS_DIR}" ]; then
+    rsync -avh --delete "${PROJECTS_DIR}/" ~/projects
+    (crontab -l ; echo "*/10 * * * * ${DIR}/sync") | sort - | uniq - | crontab -
+else
+    echo "${PROJECTS_DIR} is missing. Skipping projects install."
+fi
 
 # Setup global Git ignore config.
 git config --global core.excludesfile "${HOME}/.gitignore_global"

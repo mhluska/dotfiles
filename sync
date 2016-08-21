@@ -1,0 +1,9 @@
+#!/bin/sh
+
+rsync -avh --delete \
+    --exclude=node_modules \
+    --exclude=bower_components \
+    --exclude=tmp \
+    --exclude=temp \
+    --exclude=Icon? \
+    --exclude=.DS_Store ~/projects/ ~/Dropbox/.projects
