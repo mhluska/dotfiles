@@ -1,3 +1,3 @@
 dep 'dotfiles' do
-  requires 'homebrew', 'tmux.homebrew', 'how2.npm'
+  requires 'homebrew', 'tmux.src', 'how2.npm'
 end

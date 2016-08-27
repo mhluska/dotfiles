@@ -76,4 +76,6 @@ if [ "$(uname)" == 'Darwin' ]; then
     "${DIR}/setup-mac"
 fi
 
-run "chsh -s $(which zsh)"
+if [ "$(which zsh)" ]; then
+    run "chsh -s $(which zsh)"
+fi

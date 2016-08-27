@@ -1,4 +1,6 @@
+*.log
 fonts/
 .vim/bundle/
 .netrwhist
-.babushka/logs
+.babushka/*
+!.babushka/deps/
