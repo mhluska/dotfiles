@@ -27,6 +27,19 @@ function delete_if_not_symlink_dir() {
     test -d "${1}" -a ! -L "${1}" && rm -rfi "${1}"
 }
 
+function link_dotfiles() {
+    base="${1}"
+    ln -fs "${base}/.vim"
+    ln -fs "${base}/.vimrc"
+    ln -fs "${base}/.gitignore_global"
+    ln -fs "${base}/.aliases"
+    ln -fs "${base}/.zshrc"
+    ln -fs "${base}/.bashrc"
+    ln -fs "${base}/.bash_login"
+    ln -fs "${base}/.babushka"
+    ln -fs "${base}/.tmux.conf"
+}
+
 # TODO(maros): Convert everything in this setup script to Babuska deps.
 brew update
 sh -c "`curl --silent https://babushka.me/up/v0.19.0`" </dev/null
@@ -37,22 +50,14 @@ cd "${HOME}"
 delete_if_not_symlink_dir .vim
 delete_if_not_symlink_dir .babushka
 
-ln -fs "${DIR}/.vim"
-ln -fs "${DIR}/.vimrc"
-ln -fs "${DIR}/.gitignore_global"
-ln -fs "${DIR}/.aliases"
-ln -fs "${DIR}/.zshrc"
-ln -fs "${DIR}/.bashrc"
-ln -fs "${DIR}/.bash_login"
-ln -fs "${DIR}/.babushka"
-ln -fs "${DIR}/.tmux.conf"
-
 # Install projects.
 if [ -d "${PROJECTS_DIR}" ]; then
     rsync -avh --delete "${PROJECTS_DIR}/" ~/projects
     (crontab -l ; echo "*/10 * * * * ${DIR}/sync") | sort - | uniq - | crontab -
+    link_dotfiles ~/projects/dotfiles
 else
     echo "${PROJECTS_DIR} is missing. Skipping projects install."
+    link_dotfiles "${DIR}"
 fi
 
 # Setup global Git ignore config.
