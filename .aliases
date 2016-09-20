@@ -35,6 +35,7 @@ alias urlencode='python -c "import sys, urllib as ul; \
     print ul.quote_plus(sys.argv[1])"'
 
 alias ll='ls -l'
+alias unquarantine='xattr -dr com.apple.quarantine'
 alias chmod-value='stat -f "%OLp"'
 alias newest='ls -t | head -1'
 alias ack='ack --ignore-dir tmp --ignore-dir dist --ignore-dir public \
