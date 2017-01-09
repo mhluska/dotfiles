@@ -8,7 +8,6 @@ meta :cloned do
   }
 end
 
-dep 'how2.npm'
 dep 'pyenv.lib'
 
 dep 'oh-my-zsh.cloned' do
@@ -17,5 +16,5 @@ dep 'oh-my-zsh.cloned' do
 end
 
 dep 'dotfiles' do
-  requires 'homebrew', 'tmux.src', 'how2.npm', 'pyenv.lib', 'oh-my-zsh.cloned'
+  requires 'tmux.src', 'pyenv.lib', 'oh-my-zsh.cloned'
 end

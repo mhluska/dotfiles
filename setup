@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export STATUS_REPO='https://github.com/powerline/fonts.git'
@@ -24,7 +24,7 @@ function input() {
 }
 
 function delete_if_not_symlink_dir() {
-    test -d "${1}" -a ! -L "${1}" && rm -rfi "${1}"
+    test -d "${1}" -a ! -L "${1}" && rm -rf "${1}"
 }
 
 function link_dotfiles() {
@@ -40,10 +40,7 @@ function link_dotfiles() {
     ln -fs "${base}/.tmux.conf"
 }
 
-# TODO(maros): Convert everything in this setup script to Babuska deps.
-brew update
 sh -c "`curl --silent https://babushka.me/up/v0.19.0`" </dev/null
-babushka dotfiles
 
 cd "${HOME}"
 
@@ -59,6 +56,9 @@ else
     echo "${PROJECTS_DIR} is missing. Skipping projects install."
     link_dotfiles "${DIR}"
 fi
+
+# TODO(maros): Convert everything in this setup script to Babuska deps.
+babushka dotfiles
 
 # Setup global Git ignore config.
 git config --global core.excludesfile "${HOME}/.gitignore_global"
