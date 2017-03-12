@@ -40,7 +40,7 @@ function link_dotfiles() {
     ln -fs "${base}/.tmux.conf"
 }
 
-sh -c "`curl --silent https://babushka.me/up/v0.19.0`" </dev/null
+sudo sh -c "`curl --silent https://babushka.me/up/v0.19.0`" </dev/null
 
 cd "${HOME}"
 
