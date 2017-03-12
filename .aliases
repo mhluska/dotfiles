@@ -1,5 +1,5 @@
 function findf {
-    find . -type f -iname "*${@}*"
+    find . -type f -iname "*${@}*" -not -path "*/node_modules/*" -not -path "*/bower_components/*"
 }
 
 function findf0 {
@@ -35,12 +35,14 @@ alias urlencode='python -c "import sys, urllib as ul; \
     print ul.quote_plus(sys.argv[1])"'
 
 alias ll='ls -l'
+alias unstaged="git status | sed '1,/Unmerged/d' | grep : | awk '{\$1=\$1;print}' | awk -F ': ' '{print \$2}' | head -n 1"
 alias unquarantine='xattr -dr com.apple.quarantine'
 alias chmod-value='stat -f "%OLp"'
 alias newest='ls -t | head -1'
 alias ack='ack --ignore-dir tmp --ignore-dir dist --ignore-dir public \
                --ignore-dir vendor --ignore-dir bower_components \
-               --ignore-dir node_modules --ignore-dir log'
+               --ignore-dir node_modules --ignore-dir log \
+               --ignore-dir _compiled'
 
 alias g='git'
 alias gu='git update'
@@ -52,6 +54,7 @@ alias gc='git commit -m'
 alias gl='git log'
 alias gd='git diff HEAD'
 alias gp='git pull'
+alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias glo='git log --pretty=oneline --abbrev-commit'
 alias gcl='git clean -f -d'
 alias gca='git commit --amend'

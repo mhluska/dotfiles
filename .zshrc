@@ -87,9 +87,15 @@ export EDITOR='vim'
 
 # Override theme.
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}×"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
-PROMPT='${ret_status} $(git_prompt_info)%{$fg[cyan]%}%64<..<%d%<<%{$reset_color%} '
+# ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}×"
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
+PROMPT='${ret_status}$(git_prompt_info)%{$fg[cyan]%}%50<..<%d%<<%{$reset_color%} '
+
+# Make the git prompt less slow by not calling `git status`.
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
 
 # Save lots of history data.
 HISTFILE=~/.histfile

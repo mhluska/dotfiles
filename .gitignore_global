@@ -1,4 +1,7 @@
 *.swp
 *.swo
 *.css.map
+npm-debug.log
 .java-version
+.byebug_history
+node_modules/
