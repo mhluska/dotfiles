@@ -9,6 +9,8 @@ meta :cloned do
 end
 
 dep 'zsh.bin'
+dep 'nodejs.bin'
+dep 'npm.bin'
 
 dep 'oh-my-zsh.cloned' do
   requires 'zsh.bin'
@@ -17,5 +19,5 @@ dep 'oh-my-zsh.cloned' do
 end
 
 dep 'dotfiles' do
-  requires 'tmux.src', 'oh-my-zsh.cloned'
+  requires 'tmux.src', 'oh-my-zsh.cloned', 'nodejs.bin', 'npm.bin'
 end
