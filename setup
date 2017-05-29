@@ -79,8 +79,8 @@ vim +PluginInstall +qall
 # Setup status line fonts for Vim.
 fonts="$(basename $STATUS_REPO)"
 fonts="${DIR}/${fonts%.*}"
-test ! -e "${fonts}" && git clone "${STATUS_REPO}" "${fonts}" \
-                     && "${fonts}/install.sh"
+test ! -e "${fonts}" && git clone "${STATUS_REPO}" "${fonts}"
+"${fonts}/install.sh"
 
 if [ "$(uname)" == 'Darwin' ]; then
     "${DIR}/setup-mac"
