@@ -11,7 +11,7 @@ dep 'pkg-config.bin', for: :osx
 
 dep 'ncurses.lib' do
   installs {
-    via :brew, 'ncursesw'
+    via :brew, 'ncurses'
     otherwise 'libncurses5-dev', 'libncursesw5-dev'
   }
 end
