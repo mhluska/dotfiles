@@ -20,10 +20,10 @@ dep 'tmux.src' do
   requires 'ncurses.lib', 'libevent-dev.lib', 'reattach-to-user-namespace.bin',
     'automake.bin', 'pkg-config.bin'
 
-  provides 'tmux ~> 2.2'
-  source 'https://github.com/tmux/tmux/tarball/2.2'
+  provides 'tmux ~> 2.5'
+  source 'https://github.com/tmux/tmux/tarball/2.5'
 
   preconfigure { shell('./autogen.sh && ./configure') }
 
-  met? { shell('command -v tmux >/dev/null && tmux -V') == 'tmux 2.2'}
+  met? { shell('command -v tmux >/dev/null && tmux -V') == 'tmux 2.5'}
 end
