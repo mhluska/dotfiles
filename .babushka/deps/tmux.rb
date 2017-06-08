@@ -7,7 +7,7 @@ end
 
 dep 'reattach-to-user-namespace.bin', for: :osx
 dep 'automake.bin', for: :osx
-dep 'pkg-config.bin', for: :osx
+dep 'pkg-config.bin'
 
 dep 'ncurses.lib' do
   installs {
