@@ -118,3 +118,7 @@ fi
 if [[ -f "${HOME}/.aliases.local" ]]; then
     source "${HOME}/.aliases.local"
 fi
+
+if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+    tmux attach || tmux new
+fi
