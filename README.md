@@ -1,8 +1,8 @@
 # dotfiles
 
-Configuration files for Vim and whatnot
+Configuration files for Vim and whatnot.
 
-Note: This will nuke your existing dotfiles.
+Make sure `curl` is installed first. Note: This will nuke your existing dotfiles.
 
 ```
 ./setup
