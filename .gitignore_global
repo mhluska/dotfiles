@@ -5,3 +5,8 @@ npm-debug.log
 .java-version
 .byebug_history
 node_modules/
+.DS_Store
+
+# Ignore Zeus config.
+custom_plan.rb
+zeus.json

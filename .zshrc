@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="${HOME}/bin:/usr/local/bin:${PATH}"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -8,6 +8,13 @@ export ZSH="${HOME}/.oh-my-zsh"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME='robbyrussell'
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -41,7 +48,10 @@ ZSH_THEME='robbyrussell'
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -51,7 +61,7 @@ ZSH_THEME='robbyrussell'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode z)
 
 source "${ZSH}/oh-my-zsh.sh"
 
@@ -60,7 +70,7 @@ source "${ZSH}/oh-my-zsh.sh"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -74,7 +84,7 @@ export EDITOR='vim'
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -87,8 +97,8 @@ export EDITOR='vim'
 
 # Override theme.
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}%{$fg[red]%}"
-# ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}×"
-# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%} %{$fg[yellow]%}×"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
 PROMPT='${ret_status}$(git_prompt_info)%{$fg[cyan]%}%50<..<%d%<<%{$reset_color%} '
 
 # Make the git prompt less slow by not calling `git status`.
@@ -112,11 +122,21 @@ fi
 
 # These are local settings that will not get saved to the `dotfiles` repo.
 if [[ -f "${HOME}/.zshrc.local" ]]; then
-    source "${HOME}/.zshrc.local"
+  source "${HOME}/.zshrc.local"
 fi
 
 if [[ -f "${HOME}/.aliases.local" ]]; then
-    source "${HOME}/.aliases.local"
+  source "${HOME}/.aliases.local"
+fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/mhluska/google-cloud-sdk/path.zsh.inc' ]; then
+  source '/Users/mhluska/google-cloud-sdk/path.zsh.inc';
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/mhluska/google-cloud-sdk/completion.zsh.inc' ]; then
+  source '/Users/mhluska/google-cloud-sdk/completion.zsh.inc'
 fi
 
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
