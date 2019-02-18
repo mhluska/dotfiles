@@ -142,3 +142,6 @@ fi
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
     tmux attach || tmux new
 fi
+
+# Fixes auto-signing git commits. See https://stackoverflow.com/a/42265848
+export GPG_TTY=$(tty)
