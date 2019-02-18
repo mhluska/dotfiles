@@ -41,6 +41,7 @@ ln -fs "${DIR}/.bashrc"
 ln -fs "${DIR}/.bash_login"
 ln -fs "${DIR}/.babushka"
 ln -fs "${DIR}/.tmux.conf"
+ln -fs "${DIR}/.gnupg/gpg-agent.conf"
 
 # TODO(maros): Convert everything in this setup script to Babuska deps.
 babushka dotfiles
