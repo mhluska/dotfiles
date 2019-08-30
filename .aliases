@@ -44,6 +44,8 @@ alias ack='ack --ignore-dir tmp --ignore-dir dist --ignore-dir public \
                --ignore-dir node_modules --ignore-dir log \
                --ignore-dir _compiled'
 
+alias subl='open -a "sublime text"'
+
 alias g='git'
 alias gu='git update'
 alias gb='git branch'
