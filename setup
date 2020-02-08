@@ -25,7 +25,7 @@ function delete_if_not_symlink_dir() {
     test -d "${1}" -a ! -L "${1}" && rm -rf "${1}"
 }
 
-sudo sh -c "`curl --silent https://babushka.me/up/v0.19.1`" </dev/null
+sudo sh -c "`curl https://babushka.me/up`" </dev/null
 
 cd "${HOME}"
 
